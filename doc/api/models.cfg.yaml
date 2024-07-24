@@ -1,0 +1,4 @@
+package: user
+generate:
+  models: true
+output: internal/delivery/user/model.go

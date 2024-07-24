@@ -1,0 +1,6 @@
+package: user
+generate:
+  fiber-server: true
+  strict-server: true
+  embedded-spec: true
+output: internal/delivery/user/api-server.gen.go
