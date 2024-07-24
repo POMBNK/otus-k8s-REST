@@ -18,22 +18,18 @@ func New(storage repository.UserRepository, tx tx.Tx) *Service {
 		tx:      tx,
 	}
 }
-func (s Service) CreateUser(ctx context.Context, user entity.User) (int, error) {
-	//TODO implement me
-	panic("implement me")
+func (s *Service) CreateUser(ctx context.Context, user entity.CreateUser) (int, error) {
+	return s.storage.CreateUser(ctx, user)
 }
 
-func (s Service) UserBydID(ctx context.Context, userID int) (entity.User, error) {
-	//TODO implement me
-	panic("implement me")
+func (s *Service) FindUserBydID(ctx context.Context, userID int) (entity.User, error) {
+	return s.storage.FindUserBydID(ctx, userID)
 }
 
-func (s Service) UpdateUser(ctx, bannerID int, user entity.User) {
-	//TODO implement me
-	panic("implement me")
+func (s *Service) UpdateUser(ctx context.Context, bannerID int, user entity.User) error {
+	return s.storage.UpdateUser(ctx, bannerID, user)
 }
 
-func (s Service) DeleteUser(ctx, bannerID int) {
-	//TODO implement me
-	panic("implement me")
+func (s *Service) DeleteUser(ctx context.Context, bannerID int) error {
+	return s.storage.DeleteUser(ctx, bannerID)
 }

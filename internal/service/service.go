@@ -6,8 +6,8 @@ import (
 )
 
 type UserService interface {
-	CreateUser(ctx context.Context, user entity.User) (int, error)
-	UserBydID(ctx context.Context, userID int) (entity.User, error)
-	UpdateUser(ctx, bannerID int, user entity.User)
-	DeleteUser(ctx, bannerID int)
+	CreateUser(ctx context.Context, user entity.CreateUser) (int, error)
+	FindUserBydID(ctx context.Context, userID int) (entity.User, error)
+	UpdateUser(ctx context.Context, bannerID int, user entity.User) error
+	DeleteUser(ctx context.Context, userID int) error
 }

@@ -134,13 +134,22 @@ type CreateUserResponseObject interface {
 	VisitCreateUserResponse(ctx *fiber.Ctx) error
 }
 
-type CreateUserdefaultResponse struct {
-	StatusCode int
+type CreateUser201JSONResponse UserResponse
+
+func (response CreateUser201JSONResponse) VisitCreateUserResponse(ctx *fiber.Ctx) error {
+	ctx.Response().Header.Set("Content-Type", "application/json")
+	ctx.Status(201)
+
+	return ctx.JSON(&response)
 }
 
-func (response CreateUserdefaultResponse) VisitCreateUserResponse(ctx *fiber.Ctx) error {
-	ctx.Status(response.StatusCode)
-	return nil
+type CreateUser400JSONResponse Error
+
+func (response CreateUser400JSONResponse) VisitCreateUserResponse(ctx *fiber.Ctx) error {
+	ctx.Response().Header.Set("Content-Type", "application/json")
+	ctx.Status(400)
+
+	return ctx.JSON(&response)
 }
 
 type DeleteUserRequestObject struct {
@@ -151,24 +160,22 @@ type DeleteUserResponseObject interface {
 	VisitDeleteUserResponse(ctx *fiber.Ctx) error
 }
 
-type DeleteUser204Response struct {
-}
+type DeleteUser200JSONResponse OK
 
-func (response DeleteUser204Response) VisitDeleteUserResponse(ctx *fiber.Ctx) error {
-	ctx.Status(204)
-	return nil
-}
-
-type DeleteUserdefaultJSONResponse struct {
-	Body       Error
-	StatusCode int
-}
-
-func (response DeleteUserdefaultJSONResponse) VisitDeleteUserResponse(ctx *fiber.Ctx) error {
+func (response DeleteUser200JSONResponse) VisitDeleteUserResponse(ctx *fiber.Ctx) error {
 	ctx.Response().Header.Set("Content-Type", "application/json")
-	ctx.Status(response.StatusCode)
+	ctx.Status(200)
 
-	return ctx.JSON(&response.Body)
+	return ctx.JSON(&response)
+}
+
+type DeleteUser400JSONResponse Error
+
+func (response DeleteUser400JSONResponse) VisitDeleteUserResponse(ctx *fiber.Ctx) error {
+	ctx.Response().Header.Set("Content-Type", "application/json")
+	ctx.Status(400)
+
+	return ctx.JSON(&response)
 }
 
 type FindUserByIdRequestObject struct {
@@ -188,16 +195,13 @@ func (response FindUserById200JSONResponse) VisitFindUserByIdResponse(ctx *fiber
 	return ctx.JSON(&response)
 }
 
-type FindUserByIddefaultJSONResponse struct {
-	Body       Error
-	StatusCode int
-}
+type FindUserById400JSONResponse Error
 
-func (response FindUserByIddefaultJSONResponse) VisitFindUserByIdResponse(ctx *fiber.Ctx) error {
+func (response FindUserById400JSONResponse) VisitFindUserByIdResponse(ctx *fiber.Ctx) error {
 	ctx.Response().Header.Set("Content-Type", "application/json")
-	ctx.Status(response.StatusCode)
+	ctx.Status(400)
 
-	return ctx.JSON(&response.Body)
+	return ctx.JSON(&response)
 }
 
 type UpdateUserRequestObject struct {
@@ -209,24 +213,22 @@ type UpdateUserResponseObject interface {
 	VisitUpdateUserResponse(ctx *fiber.Ctx) error
 }
 
-type UpdateUser200Response struct {
-}
+type UpdateUser200JSONResponse OK
 
-func (response UpdateUser200Response) VisitUpdateUserResponse(ctx *fiber.Ctx) error {
-	ctx.Status(200)
-	return nil
-}
-
-type UpdateUserdefaultJSONResponse struct {
-	Body       Error
-	StatusCode int
-}
-
-func (response UpdateUserdefaultJSONResponse) VisitUpdateUserResponse(ctx *fiber.Ctx) error {
+func (response UpdateUser200JSONResponse) VisitUpdateUserResponse(ctx *fiber.Ctx) error {
 	ctx.Response().Header.Set("Content-Type", "application/json")
-	ctx.Status(response.StatusCode)
+	ctx.Status(200)
 
-	return ctx.JSON(&response.Body)
+	return ctx.JSON(&response)
+}
+
+type UpdateUser400JSONResponse Error
+
+func (response UpdateUser400JSONResponse) VisitUpdateUserResponse(ctx *fiber.Ctx) error {
+	ctx.Response().Header.Set("Content-Type", "application/json")
+	ctx.Status(400)
+
+	return ctx.JSON(&response)
 }
 
 // StrictServerInterface represents all server handlers.
@@ -379,21 +381,21 @@ func (sh *strictHandler) UpdateUser(ctx *fiber.Ctx, userId int64) error {
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

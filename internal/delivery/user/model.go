@@ -13,18 +13,37 @@ type Error struct {
 	Message string `json:"message"`
 }
 
+// OK defines model for OK.
+type OK struct {
+	Code    int32  `json:"code"`
+	Message string `json:"message"`
+}
+
+// UpdateUser defines model for UpdateUser.
+type UpdateUser struct {
+	Email     openapi_types.Email `json:"email"`
+	FirstName string              `json:"firstName"`
+	LastName  string              `json:"lastName"`
+	Phone     string              `json:"phone"`
+	Username  string              `json:"username"`
+}
+
 // User defines model for User.
 type User struct {
 	Email     *openapi_types.Email `json:"email,omitempty"`
-	FirstName *string              `json:"firstName,omitempty"`
-	Id        *int64               `json:"id,omitempty"`
-	LastName  *string              `json:"lastName,omitempty"`
-	Phone     *string              `json:"phone,omitempty"`
-	Username  *string              `json:"username,omitempty"`
+	FirstName string               `json:"firstName"`
+	LastName  string               `json:"lastName"`
+	Phone     string               `json:"phone"`
+	Username  string               `json:"username"`
+}
+
+// UserResponse defines model for UserResponse.
+type UserResponse struct {
+	Id int64 `json:"id"`
 }
 
 // CreateUserJSONRequestBody defines body for CreateUser for application/json ContentType.
 type CreateUserJSONRequestBody = User
 
 // UpdateUserJSONRequestBody defines body for UpdateUser for application/json ContentType.
-type UpdateUserJSONRequestBody = User
+type UpdateUserJSONRequestBody = UpdateUser
