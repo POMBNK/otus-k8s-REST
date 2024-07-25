@@ -27,7 +27,8 @@ func NewClient(ctx context.Context, maxAttempts int) (*Db, error) {
 	var pool *pgxpool.Pool
 	var err error
 	//todo: build dns from config
-	dns := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", "postgres", "postgres", "localhost", "6969", "postgres")
+	dns := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", "postgres", "postgres", "postgres", "5432", "postgres")
+	log.Println(dns)
 	err = again(func() error {
 		ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		defer cancel()

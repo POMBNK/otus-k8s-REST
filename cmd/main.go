@@ -7,6 +7,9 @@ import (
 	userService "github.com/POMBNK/kuberRest/internal/service/user"
 	"github.com/POMBNK/kuberRest/pkg/client/postgres"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/logger"
+	mw "github.com/oapi-codegen/fiber-middleware"
 	"log"
 )
 
@@ -26,11 +29,19 @@ func main() {
 		EnablePrintRoutes: true,
 		StrictRouting:     false,
 	}
+
 	engine := fiber.New(cfg)
+	engine.Use(cors.New())
+	engine.Use(logger.New())
 	// Swagger
 	engine.Static("/swagger", "./doc/dist")
-	user.New(service).Register(engine)
+	userServer := user.New(service)
+	engine.Use(mw.OapiRequestValidator(userServer.Swagger))
+	userServer.Register(engine)
 
-	// start server
+	//start server
+
 	log.Panicln(engine.Listen(":8080"))
+
+	//log.Panicln(engine.Listen("0.0.0.0:8080"))
 }

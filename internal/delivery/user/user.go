@@ -6,13 +6,12 @@ import (
 	"github.com/POMBNK/kuberRest/internal/service"
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/gofiber/fiber/v2"
-	mw "github.com/oapi-codegen/fiber-middleware"
 	"net/http"
 )
 
 type Server struct {
 	service service.UserService
-	swagger *openapi3.T
+	Swagger *openapi3.T
 }
 
 func (s *Server) CreateUser(ctx context.Context, request CreateUserRequestObject) (CreateUserResponseObject, error) {
@@ -87,10 +86,11 @@ func New(service service.UserService) *Server {
 	if err != nil {
 		panic(err)
 	}
-	return &Server{service: service, swagger: swagger}
+	return &Server{service: service, Swagger: swagger}
 }
 
 func (s *Server) Register(engine fiber.Router) {
-	engine.Use(mw.OapiRequestValidator(s.swagger))
-	RegisterHandlers(engine, NewStrictHandler(s, nil))
+	RegisterHandlersWithOptions(engine, NewStrictHandler(s, nil), FiberServerOptions{
+		Middlewares: nil,
+	})
 }
