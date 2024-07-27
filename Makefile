@@ -1,3 +1,15 @@
+start:
+	minikube start
+.PHONY: start
+
+apply:
+	cd deployments/k8s/manifests && kubectl apply -f.
+.PHONY: apply
+
+tun:
+	minikube tunnel
+.PHONY: tunnel
+
 generate:
 	go generate ./...
 	go run doc/merger/main.go

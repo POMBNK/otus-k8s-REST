@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuber-deployment
+  labels:
+    env: dev
+    app: kuberrest
+spec:
+  replicas: 2
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      env: dev
+      app: kuberrest
+  template:
+    metadata:
+      labels:
+        env: dev
+        app: kuberrest
+    spec:
+      containers:
+        - name: kuberrest-app-dev
+          image: pombnk/kuberrest:v1.0
+          ports:
+            - containerPort: 8080
+#          readinessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8000
+#              scheme: HTTP
+#            initialDelaySeconds: 15
+#            periodSeconds: 30
+#            successThreshold: 1
+#            failureThreshold: 3
+#            timeoutSeconds: 5
+#          livenessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8000
+#              scheme: HTTP
+#            initialDelaySeconds: 30
+#            periodSeconds: 60
+#            successThreshold: 1
+#            failureThreshold: 3
+#            timeoutSeconds: 5
