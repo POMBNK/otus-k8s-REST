@@ -22,13 +22,3 @@ spec:
         - name: migration
           image: pombnk/kuberrest-migrations:v2.0
           imagePullPolicy: {{ .Values.deployments.imagePullPolicy }}
-{{/*        - name: {{ .Release.Name }}-job*/}}
-{{/*          image: ghcr.io/kukymbr/goose-docker:3.21.1*/}}
-{{/*          imagePullPolicy: {{ .Values.deployments.imagePullPolicy }}*/}}
-{{/*          env:*/}}
-{{/*            - name: GOOSE_DRIVER*/}}
-{{/*              value: postgres*/}}
-{{/*            - name: GOOSE_DBSTRING*/}}
-{{/*              value: host=postgres port=5432 user=postgres password=postgres dbname=postgres*/}}
-{{/*            - name: GOOSE_COMMAND*/}}
-{{/*              value: up*/}}

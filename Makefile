@@ -3,10 +3,15 @@ start:
 	minikube addons enable ingress && \
 	minikube addons enable metrics-server &&\
     helm dependencies build deployments/k8s/helm/kuberrest &&\
-    helm delete kuberrest && \
 	helm install kuberrest deployments/k8s/helm/kuberrest &&\
 	minikube dashboard
 .PHONY: start
+
+done:
+	helm delete kuberrest && \
+	kubectl delete jobs kuberrest-job && \
+	minikube stop
+.PHONY: done
 
 apply:
 	cd deployments/k8s/manifests && kubectl apply -f.

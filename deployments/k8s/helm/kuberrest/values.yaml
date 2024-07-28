@@ -11,11 +11,9 @@ postgresql:
     component: database
     manager: helm
 
-  # Values for the deployment of the configmap for the postgresql
   configmap:
     name: postgres-configmap
 
-  # Values for the deployment of your app
 app:
   name: rest-app
   component: backend
@@ -23,7 +21,7 @@ app:
 
 image:
   repository: pombnk/kuberrest
-  tag: v1.0
+  tag: latest
 
 deployments:
   name: app
