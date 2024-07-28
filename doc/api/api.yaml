@@ -125,10 +125,11 @@ paths:
               sample-user:
                 summary: Example
                 value:
-                  firstName: Julie
+                  username: johndoe589
+                  firstName: John
                   lastName: Doe
                   email: bestjohn@doe.com
-                  phone: '+71004242424'
+                  phone: '+71002003040'
 
       responses:
         '200':

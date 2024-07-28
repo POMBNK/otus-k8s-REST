@@ -209,9 +209,10 @@ paths:
                 summary: Example
                 value:
                   email: bestjohn@doe.com
-                  firstName: Julie
+                  firstName: John
                   lastName: Doe
-                  phone: "+71004242424"
+                  phone: "+71002003040"
+                  username: johndoe589
             schema:
               $ref: '#/components/schemas/UpdateUser'
       responses:
