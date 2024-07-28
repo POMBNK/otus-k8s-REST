@@ -1,5 +1,11 @@
 start:
-	minikube start
+	minikube start  &&\
+	minikube addons enable ingress && \
+	minikube addons enable metrics-server &&\
+    helm dependencies build deployments/k8s/helm/kuberrest &&\
+    helm delete kuberrest && \
+	helm install kuberrest deployments/k8s/helm/kuberrest &&\
+	minikube dashboard
 .PHONY: start
 
 apply:
