@@ -8,10 +8,12 @@
 ```shell
     git clone https://github.com/POMBNK/otus-k8s-REST && cd otus-k8s-REST
 ``` 
-2. Добавить в файл hosts 127.0.0.1 arch.homework, затем для развертывания приложения выполнить команду. После выполнения откроется дашборд
-```shell
-make start
-```
+2. Добавить в файл hosts: 
+    - 127.0.0.1 arch.homework
+    - 127.0.0.1 grafana.local
+   
+затем для развертывания приложения выполнить команду ```make start``` После выполнения откроется дашборд
+
 
 3. Открыть доступ через loopback interface
 ```shell

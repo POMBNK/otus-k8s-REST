@@ -15,3 +15,4 @@ spec:
               name: {{ .Release.Name }}-service
               port:
                 number: 80
+                ## todo: либо сюда нужно дописать на графану ингрес

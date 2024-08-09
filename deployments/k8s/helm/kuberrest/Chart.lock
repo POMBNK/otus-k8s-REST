@@ -2,5 +2,8 @@ dependencies:
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
   version: 15.5.20
-digest: sha256:1ac6445f2ca64c04d0d8dda8a4a80aaaf07dd689f4bd224b11f8ba56ac5dae33
-generated: "2024-07-28T00:49:43.4127908+03:00"
+- name: grafana
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.3.14
+digest: sha256:2b942a35fb3869966ef933ede41415752520fc311135e5e5014fe1a748a39327
+generated: "2024-08-09T18:16:14.9563736+03:00"

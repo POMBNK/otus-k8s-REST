@@ -6,7 +6,7 @@ start:
 	helm install kuberrest deployments/k8s/helm/kuberrest &&\
 	minikube dashboard
 .PHONY: start
-
+##kubectl port-forward svc/kuberrest-grafana 8080:3000
 done:
 	helm delete kuberrest && \
 	kubectl delete jobs kuberrest-job && \

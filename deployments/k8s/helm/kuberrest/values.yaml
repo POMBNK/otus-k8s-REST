@@ -14,6 +14,10 @@ postgresql:
   configmap:
     name: postgres-configmap
 
+grafana:
+  ingress:
+    enabled: true
+
 app:
   name: rest-app
   component: backend

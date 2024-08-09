@@ -29,3 +29,9 @@ dependencies:
     repository: "https://charts.bitnami.com/bitnami"
     tags:
       - database
+
+  - name: grafana
+    version: 11.3.14
+    repository: "https://charts.bitnami.com/bitnami"
+    tags:
+      - monitoring
