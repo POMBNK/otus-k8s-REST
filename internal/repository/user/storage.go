@@ -26,7 +26,7 @@ func (s *Storage) CreateUser(ctx context.Context, user entity.CreateUser) (int, 
 	if err != nil {
 		return 0, err
 	}
-	//
+
 	var userID int
 	err = s.conn.QueryRow(ctx, query, args...).Scan(&userID)
 	if err != nil {

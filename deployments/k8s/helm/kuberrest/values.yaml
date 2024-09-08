@@ -13,10 +13,25 @@ postgresql:
 
   configmap:
     name: postgres-configmap
+kube-prometheus-stack:
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: false
+      serviceMonitorSelector: {}
 
-grafana:
-  ingress:
-    enabled: true
+
+
+
+#grafana:
+#  ingress:
+#    enabled: true
+#  admin:
+#    user: admin
+#    password: admin
+
+#prometheus:
+#  server:
+#    configPath: /configs/prometheus.yaml
 
 app:
   name: rest-app

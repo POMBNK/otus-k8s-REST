@@ -1,6 +1,5 @@
 start:
 	minikube start  &&\
-	minikube addons enable ingress && \
 	minikube addons enable metrics-server &&\
     helm dependencies build deployments/k8s/helm/kuberrest &&\
 	helm install kuberrest deployments/k8s/helm/kuberrest &&\
@@ -35,3 +34,21 @@ mdown:
 	goose -dir migrations postgres postgres://postgres:postgres@localhost:6969/postgres down
 	goose -dir migrations postgres postgres://postgres:postgres@localhost:6969/postgres status
 .PHONY: mdown
+
+
+#helm upgrade --install ingress-nginx ingress-nginx \
+#  --repo https://kubernetes.github.io/ingress-nginx \
+#  --namespace ingress-nginx --create-namespace
+
+
+#helm upgrade --install ingress-nginx ingress-nginx \
+#--repo https://kubernetes.github.io/ingress-nginx\
+#--namespace ingress-nginx --create-namespace
+#--set controller.metrics.enabled=true \
+#--set controller.metrics.serviceMonitor.enabled=true \
+#--set controller.metrics.serviceMonitor.additionalLabels.release="prometheus"
+
+#helm upgrade prometheus prometheus-community/kube-prometheus-stack \
+#--set prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues=false \
+#--set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false
+

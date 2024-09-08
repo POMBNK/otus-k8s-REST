@@ -5,6 +5,7 @@ import (
 	"github.com/POMBNK/kuberRest/internal/delivery/user"
 	userStorage "github.com/POMBNK/kuberRest/internal/repository/user"
 	userService "github.com/POMBNK/kuberRest/internal/service/user"
+	"github.com/POMBNK/kuberRest/pkg/client/metrics"
 	"github.com/POMBNK/kuberRest/pkg/client/postgres"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -22,6 +23,7 @@ func main() {
 	// user init
 	repository := userStorage.New(pgClient)
 	service := userService.New(repository, pgClient)
+	userServer := user.New(service)
 
 	// init engine
 	cfg := fiber.Config{
@@ -31,11 +33,16 @@ func main() {
 	}
 
 	engine := fiber.New(cfg)
+
+	prometheus := metrics.New()
+
 	engine.Use(cors.New())
 	engine.Use(logger.New())
+
 	// Swagger
+	prometheus.Handle(engine, "/metrics")
 	engine.Static("/swagger", "./doc/dist")
-	userServer := user.New(service)
+	engine.Use(prometheus.MetricMiddleware())
 	engine.Use(mw.OapiRequestValidator(userServer.Swagger))
 	userServer.Register(engine)
 

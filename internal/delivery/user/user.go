@@ -20,10 +20,10 @@ func (s *Server) CreateUser(ctx context.Context, request CreateUserRequestObject
 
 	userID, err := s.service.CreateUser(ctx, user)
 	if err != nil {
-		return CreateUser400JSONResponse{
-			Code:    http.StatusBadRequest,
+		return CreateUser500JSONResponse{
+			Code:    http.StatusInternalServerError,
 			Message: "Error creating user",
-		}, err
+		}, nil
 	}
 
 	return CreateUser201JSONResponse{Id: int64(userID)}, nil
